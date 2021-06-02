@@ -40,7 +40,7 @@ const getEventMessage = function (event) {
 }
 
 const getApiLocation = function ({ endpoint, parameters }) {
-  return `While calling the Netlify API endpoint '${endpoint}' with:\n${JSON.stringify(parameters, null, 2)}`
+  return `While calling the Net API endpoint '${endpoint}' with:\n${JSON.stringify(parameters, null, 2)}`
 }
 
 const LOCATIONS = {
