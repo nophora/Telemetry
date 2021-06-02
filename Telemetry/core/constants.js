@@ -2,7 +2,7 @@
 
 const { relative, normalize } = require('path')
 
-const { getCacheDir } = require('@netlify/cache-utils')
+const { getCacheDir } = require('@net/cache-utils')
 const mapObj = require('map-obj')
 const { isDirectory } = require('path-type')
 
@@ -13,7 +13,7 @@ const getConstants = async function ({
   configPath,
   buildDir,
   functionsDistDir,
-  netlifyConfig: {
+  netConfig: {
     build: { publish = buildDir, functions, edge_handlers: edgeHandlers },
   },
   siteInfo: { id: siteId },
@@ -29,7 +29,7 @@ const getConstants = async function ({
 
   const constants = {
     /**
-     * Path to the Netlify configuration file
+     * Path to the Net configuration file
      */
     CONFIG_PATH: configPath,
     /**
@@ -49,23 +49,23 @@ const getConstants = async function ({
      */
     EDGE_HANDLERS_SRC: edgeHandlersSrc,
     /**
-     * Path to the Netlify build cache folder
+     * Path to the Net build cache folder
      */
     CACHE_DIR: cacheDir,
     /**
-     * Boolean indicating whether the build was run locally (Netlify CLI) or in the production CI
+     * Boolean indicating whether the build was run locally (Net CLI) or in the production CI
      */
     IS_LOCAL: isLocal,
     /**
-     * The version of Netlify Build
+     * The version of Net Build
      */
     NETLIFY_BUILD_VERSION: version,
     /**
-     * The Netlify Site ID
+     * The Net Site ID
      */
     SITE_ID: siteId,
     /**
-     * The Netlify API access token
+     * The Net API access token
      */
     NETLIFY_API_TOKEN: token,
     /**
