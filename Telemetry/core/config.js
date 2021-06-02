@@ -1,6 +1,6 @@
 'use strict'
 
-const resolveConfig = require('@netlify/config')
+const resolveConfig = require('@net/config')
 
 const { getChildEnv } = require('../env/main')
 const { addApiErrorHandlers } = require('../error/api')
@@ -52,7 +52,7 @@ const tLoadConfig = async function ({
     envOpt,
     testOpts,
   })
-  logConfigInfo({ logs, configPath, buildDir, netlifyConfig, context: contextA, debug })
+  logConfigInfo({ logs, configPath, buildDir, netConfig, context: contextA, debug })
 
   const apiA = addApiErrorHandlers(api)
   const [childEnv, { packageJson }] = await Promise.all([
@@ -68,7 +68,7 @@ const tLoadConfig = async function ({
     }),
     getPackageJson(buildDir),
   ])
-  return { netlifyConfig, configPath, buildDir, packageJson, childEnv, token: tokenA, api: apiA, siteInfo }
+  return { netConfig, configPath, buildDir, packageJson, childEnv, token: tokenA, api: apiA, siteInfo }
 }
 
 const loadConfig = measureDuration(tLoadConfig, 'resolve_config')
@@ -117,10 +117,10 @@ const resolveFullConfig = async function ({
   }
 }
 
-const logConfigInfo = function ({ logs, configPath, buildDir, netlifyConfig, context, debug }) {
+const logConfigInfo = function ({ logs, configPath, buildDir, netConfig, context, debug }) {
   logBuildDir(logs, buildDir)
   logConfigPath(logs, configPath)
-  logConfig({ logs, netlifyConfig, debug })
+  logConfig({ logs, netConfig, debug })
   logContext(logs, context)
 }
 
