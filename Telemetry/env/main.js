@@ -11,7 +11,7 @@ const { getGitEnv } = require('./git')
 
 // Retrieve the environment variables passed to plugins and `build.command`
 // When run locally, this tries to emulate the production environment.
-const getChildEnv = async function ({ netlifyConfig, buildDir, branch, context, siteInfo, deployId, envOpt, mode }) {
+const getChildEnv = async function ({ netConfig, buildDir, branch, context, siteInfo, deployId, envOpt, mode }) {
   const parentEnv = getParentEnv(envOpt)
 
   if (mode === 'buildbot') {
@@ -20,7 +20,7 @@ const getChildEnv = async function ({ netlifyConfig, buildDir, branch, context, 
 
   const defaultEnv = getDefaultEnv()
   const configurableEnv = getConfigurableEnv()
-  const configEnv = getConfigEnv(netlifyConfig, deployId)
+  const configEnv = getConfigEnv(netConfig, deployId)
   const forcedEnv = await getForcedEnv({ buildDir, branch, context, siteInfo })
   return {
     ...defaultEnv,
@@ -94,9 +94,9 @@ const READONLY_ENV = [
   'INCOMING_HOOK_BODY',
   'INCOMING_HOOK_TITLE',
   'INCOMING_HOOK_URL',
-  'NETLIFY_BUILD_BASE',
-  'NETLIFY_BUILD_LIFECYCLE_TRIAL',
-  'NETLIFY_IMAGES_CDN_DOMAIN',
+  'NET_BUILD_BASE',
+  'NET_BUILD_LIFECYCLE_TRIAL',
+  'NET_IMAGES_CDN_DOMAIN',
   'PULL_REQUEST',
   'REVIEW_ID',
 ]
@@ -110,7 +110,7 @@ const getForcedEnv = async function ({
 }) {
   const gitEnv = await getGitEnv(buildDir, branch)
   return {
-    // Netlify Site information
+    // Net Site information
     ...(url === undefined ? {} : { URL: url }),
     ...(REPOSITORY_URL === undefined ? {} : { REPOSITORY_URL }),
     // Configuration file context
