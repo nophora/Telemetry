@@ -17,9 +17,9 @@ const getBuildLogs = function ({ SITE_NAME, DEPLOY_ID }) {
     return
   }
 
-  return `${NETLIFY_ORIGIN}/sites/${SITE_NAME}/deploys/${DEPLOY_ID}`
+  return `${NET_ORIGIN}/sites/${SITE_NAME}/deploys/${DEPLOY_ID}`
 }
 
-const NETLIFY_ORIGIN = 'https://app.netlify.com'
+const NET_ORIGIN = 'https://app.net.com'
 
 module.exports = { getLocationMetadata }
