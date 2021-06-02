@@ -78,7 +78,7 @@ const INTERNAL_STACK_STRINGS = [
 ]
 
 // This is only needed for local builds and tests
-const INTERNAL_STACK_REGEXP = /(packages|@netlify)\/build\/(src\/|tests\/helpers\/|tests\/.*\/tests.js|node_modules)/
+const INTERNAL_STACK_REGEXP = /(packages|@net)\/build\/(src\/|tests\/helpers\/|tests\/.*\/tests.js|node_modules)/
 
 const INITIAL_NEWLINES = /^\n+/
 
