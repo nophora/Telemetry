@@ -33,9 +33,9 @@ const { getSeverity } = require('./severity')
  * @param  {string} [flags.config] - Path to the configuration file
  * @param  {string} [flags.cwd] - Current directory. Used to retrieve the configuration file
  * @param  {string} [flags.repositoryRoot] - Git repository root directory. Used to retrieve the configuration file.
- * @param  {string} [flags.token] - Netlify API token for authentication
- * @param  {string} [flags.siteId] - Netlify Site ID
- * @param  {string} [flags.deployId] - Netlify Deploy ID
+ * @param  {string} [flags.token] - Net API token for authentication
+ * @param  {string} [flags.siteId] - Net Site ID
+ * @param  {string} [flags.deployId] - Net Deploy ID
  * @param  {string} [flags.context] - Build context
  * @param  {string} [flags.branch] - Repository branch
  * @param  {boolean} [flags.dry=false] - Run in dry mode, i.e. printing commands without executing them
@@ -165,7 +165,7 @@ const tExecBuild = async function ({
   Object.assign(errorParams, { netlifyConfig, childEnv })
 
   const { commandsCount, timers: timersB } = await runAndReportBuild({
-    netlifyConfig,
+    netConfig,
     configPath,
     buildDir,
     nodePath,
@@ -188,14 +188,14 @@ const tExecBuild = async function ({
     featureFlags,
     buildbotServerSocket,
   })
-  return { netlifyConfig, siteInfo, commandsCount, timers: timersB }
+  return { netConfig, siteInfo, commandsCount, timers: timersB }
 }
 
 const execBuild = measureDuration(tExecBuild, 'total', { parentTag: 'build_site' })
 
 // Runs a build then report any plugin statuses
 const runAndReportBuild = async function ({
-  netlifyConfig,
+  netConfig,
   configPath,
   buildDir,
   nodePath,
@@ -220,7 +220,7 @@ const runAndReportBuild = async function ({
 }) {
   try {
     const { commandsCount, statuses, timers: timersA } = await initAndRunBuild({
-      netlifyConfig,
+      netConfig,
       configPath,
       buildDir,
       nodePath,
@@ -264,7 +264,7 @@ const runAndReportBuild = async function ({
       childEnv,
       api,
       mode,
-      netlifyConfig,
+      netConfig,
       errorMonitor,
       deployId,
       logs,
@@ -278,7 +278,7 @@ const runAndReportBuild = async function ({
 
 // Initialize plugin processes then runs a build
 const initAndRunBuild = async function ({
-  netlifyConfig,
+  netConfig,
   configPath,
   buildDir,
   nodePath,
@@ -304,7 +304,7 @@ const initAndRunBuild = async function ({
     configPath,
     buildDir,
     functionsDistDir,
-    netlifyConfig,
+    netConfig,
     siteInfo,
     token,
     mode,
@@ -339,7 +339,7 @@ const initAndRunBuild = async function ({
     const { commandsCount, statuses, timers: timersC } = await runBuild({
       childProcesses,
       pluginsOptions,
-      netlifyConfig,
+      netConfig,
       packageJson,
       configPath,
       buildDir,
@@ -390,14 +390,14 @@ const runBuild = async function ({
   const { pluginsCommands, timers: timersA } = await loadPlugins({
     pluginsOptions,
     childProcesses,
-    netlifyConfig,
+    netConfig,
     packageJson,
     constants,
     timers,
     debug,
   })
 
-  const { commands, commandsCount, events } = getCommands(pluginsCommands, netlifyConfig)
+  const { commands, commandsCount, events } = getCommands(pluginsCommands, netConfig)
 
   if (dry) {
     doDryRun({ commands, commandsCount, logs })
@@ -427,7 +427,7 @@ const runBuild = async function ({
 // Logs and reports that a build successfully ended
 const handleBuildSuccess = async function ({
   commandsCount,
-  netlifyConfig,
+  netConfig,
   framework,
   dry,
   siteInfo,
@@ -445,9 +445,9 @@ const handleBuildSuccess = async function ({
 
   logBuildSuccess(logs)
 
-  logTimer(logs, durationNs, 'Netlify Build')
+  logTimer(logs, durationNs, 'NetBuild')
   await reportTimers({ timers, statsdOpts, framework })
-  await trackBuildComplete({ commandsCount, netlifyConfig, durationNs, siteInfo, telemetry, mode, testOpts })
+  await trackBuildComplete({ commandsCount, netConfig, durationNs, siteInfo, telemetry, mode, testOpts })
 }
 
 module.exports = build
