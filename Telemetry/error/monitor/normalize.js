@@ -55,21 +55,21 @@ const NORMALIZE_REGEXPS = [
   // On required inputs, we print the inputs
   [/^Plugin inputs[^]*/gm, ''],
   [/(Required inputs for plugin).*/gm, '$1'],
-  // Netlify Functions validation check
+  // Net Functions validation check
   [/(should target a directory, not a regular file):.*/, '$1'],
   // zip-it-and-ship-it error when there is a `require()` but dependencies
   // were not installed
   [/(Cannot find module) '([^']+)'/g, "$1 'moduleName'"],
-  [/(A Netlify Function is using) "[^"]+"/g, '$1 "moduleName"'],
-  // netlify-plugin-inline-critical-css errors prints a list of file paths
+  [/(A Net Function is using) "[^"]+"/g, '$1 "moduleName"'],
+  // net-plugin-inline-critical-css errors prints a list of file paths
   [/Searched in: .*/g, ''],
-  // netlify-plugin-subfont prints font name in errors
+  // net-plugin-subfont prints font name in errors
   [/(is not supported yet): .*/, '$1'],
-  // netlify-plugin-subfont prints generic information in every error that
+  // net-plugin-subfont prints generic information in every error that
   // is highly build-specific
   [/^(vers?ions|Plugin configuration|Subfont called with): {[^}]+}/gm, ''],
   [/^Resolved entry points: \[[^\]]+]/gm, ''],
-  // netlify-plugin-minify-html parse error
+  // net-plugin-minify-html parse error
   [/(Parse Error):[^]*/, '$1'],
   // Multiple empty lines
   [/^\s*$/gm, ''],
