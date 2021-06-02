@@ -35,7 +35,7 @@ const getDefaultFlags = function ({ env: envOpt = {}, mode = REQUIRE_MODE }) {
     mode: REQUIRE_MODE,
     functionsDistDir: DEFAULT_FUNCTIONS_DIST,
     deployId: combinedEnv.DEPLOY_ID,
-    debug: Boolean(combinedEnv.NETLIFY_BUILD_DEBUG),
+    debug: Boolean(combinedEnv.NET_BUILD_DEBUG),
     bugsnagKey: combinedEnv.BUGSNAG_KEY,
     telemetry: !combinedEnv.BUILD_TELEMETRY_DISABLED && mode !== REQUIRE_MODE,
     sendStatus: false,
@@ -46,7 +46,7 @@ const getDefaultFlags = function ({ env: envOpt = {}, mode = REQUIRE_MODE }) {
 }
 
 const REQUIRE_MODE = 'require'
-const DEFAULT_FUNCTIONS_DIST = '.netlify/functions/'
+const DEFAULT_FUNCTIONS_DIST = '.net/functions/'
 const DEFAULT_STATSD_PORT = 8125
 
 module.exports = { normalizeFlags }
