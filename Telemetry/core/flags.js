@@ -5,7 +5,7 @@ const FLAGS = {
   config: {
     string: true,
     describe: `Path to the configuration file.
-Defaults to any netlify.toml in the git repository root directory or the base directory`,
+Defaults to any net.toml in the git repository root directory or the base directory`,
   },
   defaultConfig: {
     string: true,
@@ -16,7 +16,7 @@ Default: none.`,
   },
   cachedConfig: {
     string: true,
-    describe: `JSON configuration object returned by @netlify/config.
+    describe: `JSON configuration object returned by @net/config.
 This is done as a performance optimization to cache the configuration loading logic.
 Default: none.`,
     hidden: true,
@@ -33,16 +33,16 @@ Default: automatically guessed`,
   },
   token: {
     string: true,
-    describe: `Netlify API token for authentication.
-The NETLIFY_AUTH_TOKEN environment variable can be used as well.`,
+    describe: `Net API token for authentication.
+The NET_AUTH_TOKEN environment variable can be used as well.`,
   },
   siteId: {
     string: true,
-    describe: `Netlify Site ID.`,
+    describe: `Net Site ID.`,
   },
   deployId: {
     string: true,
-    describe: `Netlify Deploy ID.
+    describe: `Net Deploy ID.
 Default: automatically guessed`,
   },
   context: {
@@ -104,9 +104,9 @@ Default: true`,
   mode: {
     string: true,
     describe: `Environment in which this is loaded. Can be:
-  - 'buildbot': within Netlify Buildbot
-  - 'cli': within Netlify CLI
-  - 'require': through require('@netlify/build')`,
+  - 'buildbot': within Net Buildbot
+  - 'cli': within Net CLI
+  - 'require': through require('@net/build')`,
     hidden: true,
   },
   debug: {
@@ -116,7 +116,7 @@ Default: true`,
   },
   sendStatus: {
     boolean: true,
-    describe: 'Whether plugin statuses should be sent to the Netlify API',
+    describe: 'Whether plugin statuses should be sent to the Net API',
     hidden: true,
   },
   testOpts: {
