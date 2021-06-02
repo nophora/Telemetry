@@ -29,12 +29,12 @@ const parseFlags = function () {
   return yargs.options(FLAGS).usage(USAGE).parse()
 }
 
-const USAGE = `netlify-build [OPTIONS...]
+const USAGE = `build [OPTIONS...]
 
-Run Netlify Build system locally.
+Run Build system locally.
 
 Options can also be specified as environment variables prefixed with
-NETLIFY_BUILD_. For example the environment variable NETLIFY_BUILD_DRY=true can
+BUILD_. For example the environment variable BUILD_DRY=true can
 be used instead of the CLI flag --dry.`
 
 // Remove `yargs`-specific options, shortcuts, dash-cased and aliases
